@@ -11,24 +11,19 @@ template <typename T>
 class BinTree{
 
     void insert(T key, Node<T>* leaf){
-        if(key < leaf->key_value)
-        {
-            if(leaf->left != NULL)
+        if(key < leaf->key_value) {
+            if(leaf->left != NULL){
                 insert(key, leaf->left);
-            else
-            {
+            } else {
                 leaf->left=new Node<T>;
                 leaf->left->key_value = key;
                 leaf->left->left = NULL;    //Sets the left child of the child node to null
                 leaf->left->right = NULL;   //Sets the right child of the child node to null
             }
-        }
-        else if(key >= leaf->key_value)
-        {
-            if(leaf->right != NULL)
+        } else {
+            if(leaf->right != NULL){
                 insert(key, leaf->right);
-            else
-            {
+            } else {
                 leaf->right = new Node<T>;
                 leaf->right->key_value = key;
                 leaf->right->left = NULL;  //Sets the left child of the child node to null
@@ -108,6 +103,18 @@ public:
             postOrder(n->left);
             postOrder(n->right);
             std::cout << n->key_value << " ";
+        }
+    }
+
+    int countLeafs(Node<T>* n){
+        if(n){
+            if(!n->left && !n->right){
+                return 1;
+            }else{
+                return countLeafs(n->left) + countLeafs(n->right);
+            }
+        }else{
+            return 0;
         }
     }
 };

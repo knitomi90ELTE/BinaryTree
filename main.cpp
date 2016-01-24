@@ -19,5 +19,8 @@ int main() {
     tree->postOrder(tree->root);
     std::cout << std::endl;
 
+    int leafs = tree->countLeafs(tree->root);
+    std::cout << "leaf count: " << leafs << std::endl;
+
     return 0;
 }
